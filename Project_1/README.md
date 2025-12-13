@@ -19,11 +19,11 @@ L'objectif était de concevoir un service capable d’**identifier et catégoris
 ---
 
 ## Livrables
-- Rapport d’Analyse Stratégique : introduction générale.
-- Rapport d’Analyse Stratégique : Idéation et hiérarchisation des cas d’utilisation.
-- Document de Veille Réglementaire et Technologique.
-- Rapport sur les Opportunités de Données.
+- Rapport d’analyse stratégique : introduction générale.
+- Rapport d’analyse stratégique : idéation et hiérarchisation des cas d’utilisation.
+- Document de veille réglementaire et technologique.
+- Rapport sur les opportunités de données.
 - Prototype fonctionnel (Jupyter Notebook).  
 - Cahier des charges.  
-- Fiche de Spécifications Techniques et Fonctionnelles?
-- Présentation Finale du Projet (PowerPoint/Google Slides).
+- Fiche de spécifications techniques et fonctionnelles.
+- Présentation finale du projet (PowerPoint).

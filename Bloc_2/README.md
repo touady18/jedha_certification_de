@@ -1,4 +1,7 @@
-# Amazon Review Analysis - Pipeline ETL
+# 📦 Certification DE – Bloc 2
+## Project - Amazon Review Analysis
+## 🚀 Pipeline ETL
+---
 
 Pipeline ETL automatisé pour extraire, transformer et charger les données d'avis Amazon depuis PostgreSQL vers S3, Snowflake et MongoDB.
 

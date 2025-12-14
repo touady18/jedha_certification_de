@@ -1,5 +1,7 @@
-# Projet 1 – Analyse et Prototypage de Données pour Amazon
-
+# 📦 Certification DE – Bloc 1 
+## Project - Amazon Review Analysis
+## 🚀 Analyse Stratégique et proposition d'un prototype
+---
 ## Contexte
 Dans ce projet, nous avons joué le rôle d'**analyste de données** pour Amazon, le leader mondial du e-commerce.  
 L'objectif était de concevoir un service capable d’**identifier et catégoriser les avis clients les plus utiles** pour différents produits, afin d'aider Amazon à mieux exploiter les retours utilisateurs.

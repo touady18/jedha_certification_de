@@ -23,7 +23,7 @@ Pour rappel le projet Amazon Review Analysis a pour but de développer une solut
 
 ## 🏗️ Vue d’ensemble de l’architecture
 
-L’architecture de production comprend :
+L’architecture comprend :
 
 - **PostgreSQL** – Base de données Source configurée.
 - **S3** - Data Lake pour stockage des données brutes.

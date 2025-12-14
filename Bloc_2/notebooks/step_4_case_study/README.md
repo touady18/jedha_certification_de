@@ -14,16 +14,12 @@ Ce dossier contient le **Jupyter Notebook principal** pour l'analyse et la caté
 project_2/
 │
 ├── notebooks/
-│   ├── step_4_case_study/
-|   |   ├── data
-|   |   |   └── df_relevant_reviews.csv         📄 fichier pré-calculé
-│   │   ├── Step_4_Case_Study_Analysis.ipynb    ⭐ Notebook principal
-│   │   └── README.md                           📄 Ce fichier
-│   │
-│   └── sql_queries/                            📂 Requêtes SQL Snowflake
-│       ├── 01_data_extraction.sql              → Extraction des données
-│       ├── 02_data_aggregation.sql             → Agrégations pour dashboard
-│       └── 03_advanced_analysis.sql            → Analyses avancées
+│   └── step_4_case_study/
+|       ├── data
+|       |   └── df_relevant_reviews.csv         📄 fichier pré-calculé
+│       ├── Step_4_Case_Study_Analysis.ipynb    ⭐ Notebook principal
+│       └── README.md                           📄 Ce fichier
+│   
 │
 ├── data/outputs/
 │   ├── visualizations/                         📊 Graphiques générés

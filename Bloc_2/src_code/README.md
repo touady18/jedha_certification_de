@@ -44,44 +44,12 @@ SNOWFLAKE_USER=votre_user
 SNOWFLAKE_PASSWORD=votre_password
 SNOWFLAKE_WAREHOUSE=COMPUTE_WH
 SNOWFLAKE_DATABASE=AMAZON_REVIEWS
-SNOWFLAKE_SCHEMA=ANALYTICS
+SNOWFLAKE_SCHEMA=STAGING
+SNOWFLAKE_SCHEMA_ANALYTICS=ANALYTICS
 SNOWFLAKE_ROLE=ACCOUNTADMIN
 
 # MongoDB (déjà configuré pour Docker local)
 MONGODB_CONNECTION_STRING=mongodb://admin:changeme@localhost:27017/amazon_reviews?authSource=admin
-```
-
-## Utilisation
-
-### Option 1 : Pipeline Complet (Recommandé)
-
-```bash
-python scripts/pipeline.py --all
-```
-
-**⚠️ Attention** : `--all` réinitialise complètement Snowflake et MongoDB (supprime toutes les données existantes)
-
-### Option 2 : Exécution par Étapes
-
-```bash
-# Étape 1 : Extraction PostgreSQL → S3
-python scripts/extract_to_s3.py
-
-# Étape 2 : Traitement et Stockage S3 → Snowflake + MongoDB
-python scripts/process_and_store.py
-```
-
-
-
-### Avec Docker
-
-```bash
-# Build l'image
-docker build -t review-analysis .
-# Exécuter le pipeline complet
-docker run --env-file .env review-analysis
-# Exécuter une étape spécifique
-docker run --env-file .env review-analysis python scripts/extract_to_s3.py
 ```
 
 ## Architecture du Pipeline
@@ -93,7 +61,7 @@ docker run --env-file .env review-analysis python scripts/extract_to_s3.py
 └────────┬────────┘   
          │              
          ↓
-    extract_to_s3.py
+    Extract to S3
          │
          ↓
 ┌─────────────────┐
@@ -102,7 +70,7 @@ docker run --env-file .env review-analysis python scripts/extract_to_s3.py
 └────────┬────────┘
          │
          ↓
-  process_and_store.py
+  Transform and load
          │
          ├──────────────────┐
          ↓                  ↓
@@ -137,56 +105,9 @@ snowflake:
   rejected_table: "rejected_reviews"
 ```
 
-## Vérification
 
-```bash
-# Vérifier Snowflake
-python scripts/verify_snowflake.py
-
-# Vérifier MongoDB
-python scripts/verify_mongodb.py
-
-# Vérifier PostgreSQL
-docker exec -it amazon_postgres_db psql -U admin -d amazon_db -c "\dt"
-```
 ## Logs
 
 Les logs sont automatiquement sauvegardés :
 - **MongoDB** : Collection `pipeline_logs`
 - **Console** : Output en temps réel avec timestamps
-
-
-## Tests de Qualité des Données
-
-### Exécution des Tests
-
-```bash
-# Exécuter la suite complète de tests
-python tests/test_data_quality.py
-
-# Générer le rapport HTML
-python scripts/generate_quality_report.py
-
-# Ouvrir le rapport
-# Le fichier HTML est dans reports/data_quality_report.html
-```
-
-### Tests Disponibles
-
-| # | Test | Description |
-|---|------|-------------|
-| 1 | Connexion PostgreSQL | Vérifie la connexion à la base de données |
-| 2 | Ratings (1-5) | Valide que tous les ratings sont entre 1 et 5 |
-| 3 | Pas de doublons | Détecte les review_id en double |
-| 4 | Champs obligatoires | Vérifie l'absence de NULL |
-| 5 | Prix positifs | S'assure que tous les prix > 0 |
-| 6 | Textes non-vides | Contrôle la présence de contenu |
-| 7 | Types cohérents | Valide les types de données |
-| 8 | Intégrité référentielle | Vérifie les clés étrangères |
-
-**Résultat attendu : 100% de succès (8/8 tests passent)**
-
-### Rapports Générés
-
-- **JSON** : `reports/data_quality_report.json` - Données structurées
-- **HTML** : `reports/data_quality_report.html` - Rapport visuel
